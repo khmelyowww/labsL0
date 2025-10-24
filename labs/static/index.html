@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Lookup</title>
+</head>
+<body>
+    <h1>Order Lookup</h1>
+    <input type="text" id="orderID" placeholder="Enter Order UID">
+    <button onclick="getOrder()">Search</button>
+    <pre id="result"></pre>
+
+    <script>
+        function getOrder() {
+            const id = document.getElementById('orderID').value;
+            fetch(`/order?id=${id}`)
+                .then(resp => resp.json())
+                .then(data => document.getElementById('result').innerText = JSON.stringify(data, null, 2))
+                .catch(err => document.getElementById('result').innerText = err);
+        }
+    </script>
+</body>
+</html>
